@@ -1,0 +1,27 @@
+<main>
+  <div class = "head-title">
+  <a>沼津高専サッカー部</a>
+  </div>
+
+  <div class = "post">
+      <p>要望、思っていることを書いてください</p>
+      <%= form_tag("/home/create")do%>
+        <textarea name = "content"></textarea>
+        <p></p>
+        <input class = "submit" type = submit value = "送信" onclick="location.href='submit'">
+      <%end%>
+  </div>
+
+  <div class="main posts-index">
+    <% if @post.present? %>
+    <% @post.each do |post| %>
+      <div class="posts-index-item">
+        <%= post.content %>
+      </div>
+      <div class = "posts-index-time">
+        投稿ID:<%= post.id%>          投稿時間:<%=post.created_at.in_time_zone('Tokyo')%>
+      </div>
+    <% end %>
+    <% end %>
+  </div>
+</main>
